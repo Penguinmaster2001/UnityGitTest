@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 449027672581559464}
   - component: {fileID: 8735022755723110108}
   - component: {fileID: 4882041205218718284}
+  - component: {fileID: 3972556249943943246}
   m_Layer: 0
   m_Name: DavidCube
   m_TagString: Untagged
@@ -133,3 +134,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &3972556249943943246
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1232943767276037424}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 494f3889ce407d9409731bbe9dc843fc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 100

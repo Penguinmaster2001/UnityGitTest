@@ -18,7 +18,7 @@ public class ObjectCreationExample : MonoBehaviour
     private Transform object3;
     private Transform object4;
 
-    private int numberOfObjects = 500;
+    public int numberOfObjects = 500;
     private float time = 0f;
 
     // Start is called before the first frame update
@@ -26,7 +26,7 @@ public class ObjectCreationExample : MonoBehaviour
     {
         if (course)
         {
-            Course();
+            // Course();
         }
         else
         {
@@ -88,12 +88,21 @@ public class ObjectCreationExample : MonoBehaviour
                                                     new Vector4(0f, 1f, 0f, 0f),
                                                     new Vector4(-1f, 0f, 0f, 0f),
                                                     new Vector4(0f, 0f, 0f, 1f));
+            Matrix4x4 rotationZby90 = new Matrix4x4(new Vector4(0f, -1f, 0f, 0f),
+                                                    new Vector4(1f, 0f, 0f, 0f),
+                                                    new Vector4(0f, 0f, 1f, 0f),
+                                                    new Vector4(0f, 0f, 0f, 1f));
+            /*Matrix4x4 rotationYby90 = new Matrix4x4(new Vector4(Mathf.Cos(time/6f), 0f, Mathf.Sin(time/6f), 0f),
+                                                    new Vector4(0f, 1f, 0f, 0f),
+                                                    new Vector4(-Mathf.Sin(time/6f), 0f, Mathf.Cos(time/6f), 0f),
+                                                    new Vector4(0f, 0f, 0f, 1f));*/
             for (int i = 0; i < cubes.Count; i++)
             {
                 for (int j = 0; j < blackHoles.Count; j++)
                 {
                     float magnitute = (cubes[i].position - blackHoles[j].transform.position).magnitude;
                     Vector3 temp = Vector3.ProjectOnPlane(cubes[i].position - blackHoles[j].transform.position, new Vector3(0, 1, 0));
+                    // cubes[i].GetComponent<Rigidbody>().AddForce(rotationYby90.MultiplyVector(rotationZby90.MultiplyVector(new Vector4(temp.x, temp.y, temp.z, 1))) * 36 / magnitute);
                     cubes[i].GetComponent<Rigidbody>().AddForce(rotationYby90.MultiplyVector(new Vector4(temp.x, temp.y, temp.z, 1)) * 36 / magnitute);
                     cubes[i].GetComponent<Rigidbody>().AddForce(blackHoles[j].transform.position - cubes[i].position);
                 }
@@ -101,7 +110,7 @@ public class ObjectCreationExample : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.Space))
             {
-                Transform temp = Instantiate(ourObject, new Vector3(0f, 0f, 0f), Random.rotation);
+                Transform temp = Instantiate(ourObject, new Vector3(0f, 10f, 0f), Random.rotation);
                 Color randomColor = Random.ColorHSV();
                 temp.GetComponent<MeshRenderer>().material.color = randomColor;
                 temp.GetComponent<MeshRenderer>().material.SetColor("_EmissionColor", randomColor);
